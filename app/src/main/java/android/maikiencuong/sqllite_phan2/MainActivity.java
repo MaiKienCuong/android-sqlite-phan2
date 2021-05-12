@@ -62,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Address address = new Address(tvAdd.getText().toString().trim());
-                dbHandler.addAddress(address);
-                adapter.notifyDataSetChanged();
+                if (!address.getName().trim().isEmpty()) {
+                    dbHandler.addAddress(address);
+                    adapter.notifyDataSetChanged();
+                    tvAdd.setText("");
+                }
             }
         });
 
